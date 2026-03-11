@@ -1,0 +1,21 @@
+{
+  "name": "backend-project",
+  "version": "1.0.0",
+  "description": "a backend project",
+  "keywords": [
+    "javascript",
+    "Tarun",
+    "chai",
+    "backend",
+    "Express",
+    "mongoose",
+    "database"
+  ],
+  "license": "ISC",
+  "author": "Tarun Sharma",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
