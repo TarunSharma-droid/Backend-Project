@@ -1,1 +1,3 @@
-// .gitignore file is required to ignore the secrate data.
+.env
+
+.node_modules/
