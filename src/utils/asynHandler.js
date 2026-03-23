@@ -4,9 +4,10 @@
 // different route handler function as an argument , perform the error handling and then return a new function which will be 
 // used as the route handler.
 
-// this "func" is the function of any specific route and we want to preform the erroe handling for that function, so we will pass
-// this function as an argument to the asyncHandler function and then we will return a new function which will be used as the route handler.
-
+// AsyncHandler ka kaam -->
+// Route ke async function me agar error aaye → catch karna
+// System error ya custom error dono ko ek hi format me convert karna
+// Response send karna JSON format me, taaki frontend predictable way me handle kar sake.
 
 const asyncHandler = (func) => { // takes the route handler function as an argument, which is the function for which we want to perform error handling.
 
@@ -17,17 +18,25 @@ const asyncHandler = (func) => { // takes the route handler function as an argum
             await func(req, res, next);  
 
         } 
-        catch (error) {
-        // agar system error hai to convert karo to get all the error in same format.
-            if (!(error instanceof ApiError)) { // matlb jo error aayi hai agar vo ApiError ke format ko follow nahi karti hai to vo system error hai, to usko ApiError ke format me convert kar do taki sabka format same ho jaye.
-                error = new ApiError(500, error.message || "Internal Server Error")
+        catch (error) { //catch(error) route ke andar throw hone wali har error ko pakadta hai, chahe wo custom error ho ya system error.
+        
+// if block checks ki jo error aayi hai kya vo ApiError class ko follow krti hai ya nhi --> agar error ApiError ka instance nahi hai, matlab ye system error hai ya developer ne custom format follow nahi kiya error define krte samay.
+           
+            if (error instanceof ApiError) {  
+                // custom error → already defined correctly by the developer so no need to change anything in its format.
+                new_error = error
+            } 
+            else {
+               // system error or custom error in wrong format → convert to ApiError
+               new_error = new ApiError(500, error.message || "Internal Server Error")
             }
 
             // ab sabka format same
-            res.status(error.statusCode).json({
-                success: error.success,
-                message: error.message,
-                errors: error.errors
+            res.status(new_error.statusCode) // agar error ApiError ka instance hai to uska statusCode use karo, warna 500 (Internal Server Error) set karo
+            .json({
+                success: new_error.success,
+                message: new_error.message,
+                errors: new_error.errors
             })
        }
 
