@@ -1,7 +1,7 @@
 // Standard way is database folder mai file bana ke connection likho or usko import kara lo index file mai.
 
 import mongoose from "mongoose" // will connect the server to the database.
-import {DB_NAME} from "./constants.js"
+import {DB_NAME} from "../constants.js" // double dot are used constants file is in parent folder of database folder.
 
 const connectDB = async () => {
     try {

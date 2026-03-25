@@ -102,7 +102,7 @@ This main folder include the :--->
 
 // 19.  do not give spaces in link ( i.e.  MONGODB_URL = link  --> invalid) 
  
-// 20. if we make any changes in the environment varaible tab to hame server mannualy restart he karna padega yaha nodemon kaam nhi ayega.
+// 20. Agar .env file mai kuch changes kare to nodemon kaam nhi ata ..hame manually server ko stop krke vapas chalu kapata hai
 
 
 // In backend apps we usually follow this pattern:
@@ -201,4 +201,27 @@ Token tampered ya revoked to nahi
 Agar refresh token valid hai → server naya access token generate karta hai.
 Server naya token client ko bhejta hai → client fir se naya access token ke saath protected API requests kar sakta hai.
 
-// ---------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------- Cloudinary ( same as AWS )------------------------------------------------------
+
+What is Cloudinary?
+Ye ek online service / platform hai
+Iska use hota hai images aur videos ko store, manage aur deliver karne ke liye.
+// npm i cloudinary
+
+cloudinary.fileUpload.js --> is file banane ka main purpose ye hai ki Cloudinary ka poora configuration aur setup ek hi central place
+par manage kiya ja sake. Jab kisi project me multiple jagah par image ya media upload karna hota hai—jaise user avatar, cover 
+image, ya video thumbnail—tab har file me alag-alag Cloudinary config likhna inefficient ho jata hai. Isse code duplication 
+hota hai, maintain karna mushkil ho jata hai, aur agar kabhi API key ya secret change karna pade to har jagah manually update
+karna padta hai, jo error-prone bhi hai.
+
+Is problem ko solve karne ke liye hum ek dedicated utility/helper file banate hain jisme Cloudinary ka configuration ek baar
+setup hota hai. Phir project ke kisi bhi part me jab upload functionality chahiye hoti hai, to hum simply is file ko import 
+karke use kar lete hain. Is approach se code reusable, clean aur maintainable ban jata hai. Saath hi future me agar 
+configuration me koi change karna ho, to sirf isi ek file me update karna hota hai, jo development process ko efficient aur 
+scalable banata hai.
+
+// ---------------------------------------------------- MULTER -----------------------------------------------------------
+// It is a package that is used for file uplode in the backend. Matlb backend pe file uplode isi ke through hoti hai.
+// npm i multer
+
+// multer is used to uplode the file on the server rather then directly uploading it to AWS/cloudinary .

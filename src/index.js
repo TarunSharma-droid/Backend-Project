@@ -6,8 +6,8 @@ dotenv.config({path:'./.env'})
 // matlab ye line poori hone ke baad hi agle line pe jaata hai. 
 // Toh .env file pehle load hoti hai, phir baaki code.
 
-import connectDB from "./database"  // import is async is nature so it returns a promise. 
-import { app } from "./app"
+import connectDB from "./database/ConnectDatabase.js"  // import is async is nature so it returns a promise. 
+import { app } from "./app.js"
 
 connectDB() // agar connectDB() successful hota hai (matlb try successful hota hai) toh .then() wala block run hoga. Varna to process.exit(1) run hoga, jiska matlab hai ki app ko chalane ka koi point nahi hai, toh app ko shut down kar do.
 .then(()=>{       

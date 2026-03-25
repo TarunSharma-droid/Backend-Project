@@ -5,9 +5,9 @@ import cookieParser from "cookie-parser" // it is a middleware which is used to 
 const app = express() // creating an express app.
 
 // importing custom utilities
-import { asyncHandler } from "./utils/asyncHandler"
-import { ApiResponse } from "./utils/ApiResponse" // standard response structure
-import { ApiError } from "./utils/ApiError" // standard error structure
+import { asyncHandler } from "./utils/asyncHandler.js"
+import { ApiResponse } from "./utils/ApiResponse.js" // standard response structure
+import { ApiError } from "./utils/ApiError.js" // standard error structure
 
 
 // ------------------------------------------------ MIDDLEWARES -------------------------------------------------------
